@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.api.ingress.name }}
+  name: {{ .Values.client.ingress.name }}
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -12,13 +12,13 @@ spec:
     - niyov.com
     secretName: {{ .Values.global.tlsSecretName }}
   rules:
-  - host: {{ .Values.api.ingress.host }}
+  - host: {{ .Values.client.ingress.host }}
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.api.service.name }}
+            name: {{ .Values.client.service.name }}
             port:
-              number: {{ .Values.api.service.port }}
+              number: {{ .Values.client.service.port }}

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.api.deployment.name }}
-  namespace: {{ .Values.api.global.namespace }}
+  namespace: {{ .Values.global.namespace }}
 spec:
   replicas: {{ .Values.api.deployment.replicas }}
   selector:

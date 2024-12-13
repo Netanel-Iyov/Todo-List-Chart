@@ -1,0 +1,27 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.db.deployment.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.db.deployment.name }}
+  replicas: {{ .Values.db.deployment.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.db.deployment.name }}
+    spec:
+      containers:
+      - name: {{ .Values.db.deployment.dbContainer.name }}
+        image: {{ .Values.db.deployment.dbContainer.image }}
+        ports:
+        - containerPort: {{ .Values.db.deployment.dbContainer.containerPort }}
+        volumeMounts:
+        - name: {{ .Values.db.deployment.volumes.dbStorage.name }}
+          mountPath: {{ .Values.db.deployment.volumes.dbStorage.mountPath }}
+      volumes:
+      - name: {{ .Values.db.deployment.volumes.dbStorage.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.db.deployment.volumes.pvc.name }}
