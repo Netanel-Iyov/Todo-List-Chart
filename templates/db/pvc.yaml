@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ .Values.db.deployment.volumes.pvc.name }}
+  namespace: {{ .Values.global.namespace }}
 spec:
   accessModes:
     - ReadWriteOnce
