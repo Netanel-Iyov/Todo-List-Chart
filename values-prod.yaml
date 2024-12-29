@@ -1,6 +1,7 @@
 global:
   namespace: todo-list-prod
   tlsSecretName: niyov-wildcard-certificate-tls
+  registryCredentialsSecretName: registry-credentials
   
 api:
   ingress:
@@ -17,7 +18,7 @@ api:
     replicas: 1
     apiContainer:
       name: todo-list-api
-      image: natiiyov/todo-list-api:1.0.1
+      image: harbor.niyov.com/applications/todo-list-api:1.0.0
       containerPort: 3001
     secretsName: todolist-api-secrets
 
@@ -36,9 +37,8 @@ client:
     replicas: 1
     clientContainer:
       name: todo-list-client
-      image: natiiyov/todo-list-client:1.0.1
+      image: harbor.niyov.com/applications/todo-list-client:1.0.0
       containerPort: 80
-    secretsName: todolist-api-secrets
 
 db:
   service:

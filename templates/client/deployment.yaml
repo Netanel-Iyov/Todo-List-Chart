@@ -18,3 +18,5 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.client.deployment.clientContainer.containerPort }}
+      imagePullSecrets:
+      - name: {{ .Values.global.registryCredentialsSecretName }}

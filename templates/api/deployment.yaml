@@ -54,3 +54,5 @@ spec:
             secretKeyRef:
               name: {{ .Values.api.deployment.secretsName }}
               key: CORS_ORIGIN
+      imagePullSecrets:
+      - name: {{ .Values.global.registryCredentialsSecretName }}
