@@ -18,7 +18,7 @@ api:
     replicas: 1
     apiContainer:
       name: todo-list-api
-      image: harbor.niyov.com/applications/todo-list-api-staging:1.0.0
+      image: harbor.niyov.com/applications/todo-list-api-staging:2.0.0
       containerPort: 3001
     secretsName: todolist-api-secrets
 
@@ -37,7 +37,7 @@ client:
     replicas: 1
     clientContainer:
       name: todo-list-client
-      image: harbor.niyov.com/applications/todo-list-client-staging:1.0.0
+      image: harbor.niyov.com/applications/todo-list-client-staging:2.0.0
       containerPort: 80
 
 db:
