@@ -1,0 +1,62 @@
+global:
+  tlsSecretName: niyov-wildcard-certificate-tls
+  registryCredentialsSecretName: registry-credentials
+  
+api:
+  ingress:
+    name: todo-list-api
+
+  service:
+    name: todo-list-api
+    port: 80
+    targetPort: 3001
+
+  deployment:
+    name: todo-list-api
+    replicas: 1
+    apiContainer:
+      name: todo-list-api
+      image: # api component image tag
+      containerPort: 3001
+    secretsName: todolist-api-secrets
+
+client:
+  ingress:
+    name: todo-list-client
+    host: # host URL (source of request)
+  
+  service:
+    name: todo-list-client
+    port: 80
+    targetPort: 80
+
+  deployment:
+    name: todo-list-client
+    replicas: 1
+    clientContainer:
+      name: todo-list-client
+      image: # client component image tag
+      containerPort: 80
+
+db:
+  service:
+    name: todo-list-db
+    port: 27017
+    targetPort: 27017
+
+  deployment:
+    name: todo-list-db
+    replicas: 1
+    dbContainer:
+      name: todo-list-mongo
+      image: mongo:7.0.0
+      containerPort: 27017
+    volumes:
+      pv:
+        name: # Persistent volume name
+        hostPath: # Host's path for PV storage
+      pvc:
+        name: # Persistent Volume Claim name
+      dbStorage:
+        name: db-storage
+        mountPath: /data/db

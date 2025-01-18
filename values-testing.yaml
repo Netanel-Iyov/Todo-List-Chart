@@ -1,0 +1,29 @@
+global:
+  namespace: todo-list-testing
+
+api:
+  ingress:
+    host: api-todo-list-testing.niyov.com
+
+  deployment:
+    replicas: 1
+    apiContainer:
+      image: harbor.niyov.com/applications/todo-list-api-testing:2.0.1
+
+client:
+  ingress:
+    host: todo-list-testing.niyov.com
+  
+  deployment:
+    replicas: 1
+    clientContainer:
+      image: harbor.niyov.com/applications/todo-list-client-testing:2.0.1
+
+db:
+  deployment:
+    volumes:
+      pv:
+        name: todo-list-db-pv-testing
+        hostPath: /nfs/volumes/todo-list-mongo-db-testing
+      pvc:
+        name: todo-list-db-pvc-testing
