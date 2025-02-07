@@ -8,7 +8,7 @@ api:
   deployment:
     replicas: 1
     apiContainer:
-      image: harbor.niyov.com/applications/todo-list-api-testing:2.0.1
+      image: harbor.niyov.com/applications/todo-list-api-testing:f4a402fec3df133b195a17d7b5b2167a69e44855
 
 client:
   ingress:
@@ -17,7 +17,7 @@ client:
   deployment:
     replicas: 1
     clientContainer:
-      image: harbor.niyov.com/applications/todo-list-client-testing:2.0.1
+      image: harbor.niyov.com/applications/todo-list-client-testing:f4a402fec3df133b195a17d7b5b2167a69e44855
 
 db:
   deployment:
