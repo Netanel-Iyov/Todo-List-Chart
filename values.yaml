@@ -20,6 +20,13 @@ api:
       containerPort: 3001
     secretsName: todolist-api-secrets
 
+  hpa:
+    minReplicas: 1
+    maxReplicas: 3
+    metrics:
+      cpu:
+        averageUtilization: 70
+
 client:
   ingress:
     name: todo-list-client
