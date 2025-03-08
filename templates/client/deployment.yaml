@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: {{ .Values.client.deployment.name }}
 spec:
-  replicas: {{ .Values.client.deployment.replcas }}
   selector:
     matchLabels:
       app: {{ .Values.client.deployment.name }}
@@ -18,5 +17,10 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.client.deployment.clientContainer.containerPort }}
+        resources:
+          requests:
+            cpu: {{ .Values.client.deployment.clientContainer.requests.cpu }}
+          limits:
+            cpu: {{ .Values.client.deployment.clientContainer.limits.cpu }}
       imagePullSecrets:
       - name: {{ .Values.global.registryCredentialsSecretName }}

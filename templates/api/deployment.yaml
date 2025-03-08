@@ -4,7 +4,6 @@ metadata:
   name: {{ .Values.api.deployment.name }}
   namespace: {{ .Values.global.namespace }}
 spec:
-  replicas: {{ .Values.api.deployment.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.api.deployment.name }}
@@ -16,6 +15,11 @@ spec:
       containers:
       - name: {{ .Values.api.deployment.apiContainer.name }}
         image: {{ .Values.api.deployment.apiContainer.image }}
+        resources:
+          requests:
+            cpu: {{ .Values.api.deployment.apiContainer.requests.cpu }}
+          limits:
+            cpu: {{ .Values.api.deployment.apiContainer.limits.cpu }}
         ports: 
         - containerPort: {{ .Values.api.deployment.apiContainer.containerPort }}
         env:
