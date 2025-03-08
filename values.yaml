@@ -20,6 +20,14 @@ api:
       containerPort: 3001
     secretsName: todolist-api-secrets
 
+  hpa:
+    name: api-hpa
+    minReplicas: 1
+    maxReplicas: 3
+    metrics:
+      cpu:
+        averageUtilization: 70
+
 client:
   ingress:
     name: todo-list-client
@@ -37,6 +45,14 @@ client:
       name: todo-list-client
       image: # client component image tag
       containerPort: 80
+    
+  hpa:
+    name: client-hpa
+    minReplicas: 1
+    maxReplicas: 3
+    metrics:
+      cpu:
+        averageUtilization: 70
 
 db:
   service:
