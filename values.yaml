@@ -1,6 +1,6 @@
 global:
-  tlsSecretName: niyov-wildcard-certificate-tls
-  registryCredentialsSecretName: registry-credentials
+  tlsSecretName: niyov-wildcard-tls
+  registryCredentialsSecretName: niyov-harbor-registry-secret
   
 api:
   ingress:
